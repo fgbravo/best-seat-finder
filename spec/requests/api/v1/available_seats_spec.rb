@@ -37,8 +37,8 @@ RSpec.describe "POST api/v1/available_seats", type: :request do
 
       before { post api_v1_available_seats_path, params: params }
 
-      it "should return status code :ok" do
-        expect(response).to have_http_status(:ok)
+      it "should return status code :created" do
+        expect(response).to have_http_status(:created)
       end
 
       it "should return seat a1" do
@@ -104,8 +104,8 @@ RSpec.describe "POST api/v1/available_seats", type: :request do
 
         before { post api_v1_available_seats_path, params: params }
 
-        it "should return status :ok" do
-          expect(response).to have_http_status(:ok)
+        it "should return status :created" do
+          expect(response).to have_http_status(:created)
         end
 
         it "should return seats b3, b4 and b5" do

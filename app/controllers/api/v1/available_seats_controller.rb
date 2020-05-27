@@ -8,7 +8,7 @@ module API
       def create
         entities = EntitiesBuilder.new(entities_params)
         result = BestSeatFinder.new(entities.venue, entities.available_seats, entities.requested_seats).find
-        render json: result, status: :ok
+        render json: result, status: :created
 
       rescue EntitiesBuilders::ValidationsError => e
         render json: e.message, status: :unprocessable_entity
