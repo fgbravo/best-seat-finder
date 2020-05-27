@@ -1,24 +1,92 @@
-# README
+# Best Seat API
+Best Seat API allows you to find the best possible seat in a venue given a JSON with the venue layout, available seats and number of requested seats.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Requirements
+- Ruby 2.6.6
+- Rails 6.0.3
+- Bundler 2.1.4
 
-Things you may want to cover:
+# Getting Started
+Run the following commands inside your projects directory:
+```sh
+$ git clone https://github.com/fgbravo/best-seat-finder.git
+# You might be asked for credentials to continue forward
+$ bundle install
+$ rails db:create
+$ rails server
+```
 
-* Ruby version
+# API
+```
+info:
+    title: best-seat-api
+    version: 1.0
 
-* System dependencies
+servers:
+    - url: http://localhost:3000/
+    
+paths:
+    /available_seats:
+    post:
+        summary: Create a list of the best available seats
+```
 
-* Configuration
+## Available Seats Endpoint
 
-* Database creation
+`POST /available_seats`
 
-* Database initialization
+### Request Example:
 
-* How to run the test suite
+```
+curl -L -X POST 'http://localhost:3000/api/v1/available_seats' \
+-H 'Content-Type: application/json' \
+--data-raw '{
+    "venue": {
+        "layout": {
+            "rows": 10,
+            "columns": 50
+        }
+    },
+    "seats": {
+        "a1": {
+            "id": "a1",
+            "row": "a",
+            "column": 1,
+            "status": "AVAILABLE"
+        },
+        "b5": {
+            "id": "b5",
+            "row": "b",
+            "column": 5,
+            "status": "AVAILABLE"
+        },
+        "h7": {
+            "id": "h7",
+            "row": "h",
+            "column": 7,
+            "status": "AVAILABLE"
+        }
+    },
+    "requested_seats": 1
+}'
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+### Response Example
+`201 Created`
+```
+[
+    {
+        "id": "a1",
+        "row": "a",
+        "column": 1,
+        "status": "AVAILABLE"
+    }
+]
+```
 
-* Deployment instructions
+## Tests
+To run the test suite of the project, simply run the following command:
+```sh
+$ rspec
+```
 
-* ...
