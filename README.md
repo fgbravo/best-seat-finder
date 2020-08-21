@@ -11,6 +11,7 @@ Run the following commands inside your projects directory:
 ```sh
 $ git clone https://github.com/fgbravo/best-seat-finder.git
 # You might be asked for credentials to continue forward
+$ cd best-seat-api
 $ bundle install
 $ rails db:create
 $ rails server
